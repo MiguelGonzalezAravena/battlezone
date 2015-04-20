@@ -1,0 +1,61 @@
+#stage {
+  width: 683px;
+  text-align: center;
+}
+
+.cajaVacia {
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  padding-right: 1px;
+  margin: 0px;
+  float: left;
+}
+
+.caja {
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  padding-right: 1px;
+  margin: 0px;
+  float: left;
+}
+
+.cajaDerecha {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-top: 1px solid #000;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  padding-right: 1px;
+  margin: 0px;
+  float: left;
+}
+
+.cajaFinal {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  padding-right: 1px;
+  margin: 0px;
+  float: left;
+}
+
+.cajaUltima {
+  border-left: 1px solid #000;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  padding-right: 1px;
+  margin: 0px;
+  float: left;
+}
