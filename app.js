@@ -4,36 +4,27 @@ var express = require('express')
   , io = require('socket.io')(server)
   , playerCount = 0
   , id = 0
+  , color
   , tagged = false
-  , colors = []
-  , color;
+  , stage = [31][31]
 ;
 
 function defineColor() {
-  if(colors.indexOf("red") == -1) {
-    return "red";
-  } else if(colors.indexOf("blue") == -1) {
-    return "blue";
-  } else if(colors.indexOf("yellow") == -1) {
-    return "yellow";
-  } else if(colors.indexOf("green") == -1) {
-    return "green";
-  } else {
-    return "none";
-  }
-}
-
-function delColor() {
-  if(colors.indexOf("red") != -1 && colors.indexOf("blue") != -1 && colors.indexOf("yellow") != -1 && colors.indexOf("green") == -1) {
-    return "green";
-  } else if(colors.indexOf("red") != -1 && colors.indexOf("blue") != -1 && colors.indexOf("green") != -1 && colors.indexOf("yellow") == -1) {
-    return "yellow";
-  } else if(colors.indexOf("red") != -1 && colors.indexOf("yellow") != -1 && colors.indexOf("green") != -1 && colors.indexOf("blue") == -1) {
-    return "blue";
-  } else if(colors.indexOf("blue") != -1 && colors.indexOf("yellow") != -1 && colors.indexOf("green") != -1 && colors.indexOf("red") == -1) {
-    return "red";
-  } else {
-    return "none";
+  switch(playerCount) {
+    case 1:
+      return "red";
+      break;
+    case 2:
+      return "blue";
+      break;
+    case 3:
+      return "yellow";
+      break;
+    case 4:
+      return "green";
+      break;
+    default:
+      return "none";
   }
 }
 
@@ -50,7 +41,6 @@ io.on('connection', function (socket) {
   setTimeout(function () {
     if (!tagged) {
       socket.emit('connected', { playerId: id, color: defineColor() });
-      colors.push(defineColor());
     } else {
       socket.emit('connected', { playerId: id });
     }
@@ -59,14 +49,12 @@ io.on('connection', function (socket) {
   
   socket.on('disconnect', function () {
     playerCount--;
-    if(delColor() != "none") {
-      colors.splice(colors.indexOf(delColor()), 1);
-    }
     console.log('Usuarios conectados: ' + playerCount);
     io.emit('count', { playerCount: playerCount });
   });
   
   socket.on('update', function (data) {
+    console.log('Socket update');
     if (data['tagged']) {
       tagged = true;
     }
